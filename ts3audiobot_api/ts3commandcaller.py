@@ -133,3 +133,4 @@ class CommandCaller:
 
     def set_global_settings(self, name, value):
         return self.ts3audiobot.raw_request("settings/global/set/{name}/{value}".format(name=format_url(name), value=format_url(value)))
+
