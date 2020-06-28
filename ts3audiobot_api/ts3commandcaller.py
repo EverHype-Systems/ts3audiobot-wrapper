@@ -1,6 +1,6 @@
 import urllib.parse
 from urllib.parse import urlparse
-from ts3audiobot_api.controller_playlist import Playlist
+from ts3audiobot_api.commands import Playlist, History
 
 
 def is_url(link):
@@ -137,3 +137,6 @@ class CommandCaller:
 
     def init_playlist(self):
         return Playlist(self.ts3audiobot)
+
+    def init_history(self):
+        return History(self.ts3audiobot)

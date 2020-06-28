@@ -74,3 +74,46 @@ class Playlist:
 
     def disable_random(self):
         return self.ts3audiobot.request("random/off")
+
+
+class History:
+
+    def __int__(self, ts3audiobot):
+        self.ts3audiobot = ts3audiobot
+
+    def add(self, id):
+        return self.ts3audiobot.request("history/add/{id}".format(id=id))
+
+    def clean(self, remove_defective=None):
+
+        if not remove_defective:
+            return self.ts3audiobot.request("history/clean")
+        else:
+            return self.ts3audiobot.request("history/clean/remove_defective")
+
+    def delete(self, id):
+        return self.ts3audiobot.request("history/delete/{id}".format(id=id))
+
+    def history_form(self, count, userBDid):
+        return self.ts3audiobot.request("history/from/{}/{}".format(count, userBDid))
+
+    def history_id(self, id):
+        return self.ts3audiobot.request("history/id/{}".format(id))
+
+    def last(self, count):
+        return self.ts3audiobot.request("history/last/{}".format(count))
+
+    def play_last(self, count):
+        return self.ts3audiobot.request("history/last/{}".format(count))
+
+    def play(self, id):
+        return self.ts3audiobot.request("history/play/{}".format(id))
+
+    def rename(self, id, name):
+        return self.ts3audiobot.request("history/rename/{}/{}".format(id, name))
+
+    def till(self, date):
+        return self.ts3audiobot.request("history/till/{}".format(date))
+
+    def filter_titel(self, title):
+        return self.ts3audiobot.request("history/title/{}".format(title))
