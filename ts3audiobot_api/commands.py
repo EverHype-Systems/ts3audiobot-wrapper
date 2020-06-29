@@ -117,3 +117,31 @@ class History:
 
     def filter_titel(self, title):
         return self.ts3audiobot.request("history/title/{}".format(title))
+
+
+class User:
+
+    def __init(self, ts3audiobot):
+        self.ts3audiobot = ts3audiobot
+
+    def get_user_uid_by_id(self):
+        return self.ts3audiobot.request("getuser/uid/byid")
+
+    def get_username_by_id(self):
+        return self.ts3audiobot.request("getuser/name/byid")
+
+    def get_user_dbid_by_id(self):
+        return self.ts3audiobot.request("getuser/dbid/byid")
+
+    def get_user_channel_by_id(self):
+        return self.ts3audiobot.request("getuser/channel/byid")
+
+    def get_user_all_by_id(self):
+        return self.ts3audiobot.request("getuser/all/byid")
+
+    def get_user_id_by_name(self):
+        return self.ts3audiobot.request("getuser/id/byname")
+
+    def get_username_by_dbid(self):
+        return self.ts3audiobot.request("getuser/name/bydbid")
+   
