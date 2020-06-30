@@ -4,7 +4,7 @@ from ts3audiobot_api.commands import Playlist, History, User
 
 
 def format_url(url):
-    return urllib.parse.quote(url)
+    return urllib.parse.quote(url, safe='')
 
 
 class CommandCaller:
@@ -22,7 +22,8 @@ class CommandCaller:
         """
 
         # MAKE REQUEST
-        return self.ts3audiobot.request("play/{url}".format(url=link))
+        print("play/{url}".format(url=format_url(link)))
+        return self.ts3audiobot.request("play/{url}".format(url=format_url(link)))
 
     def pause(self):
         return self.ts3audiobot.request("pause")
