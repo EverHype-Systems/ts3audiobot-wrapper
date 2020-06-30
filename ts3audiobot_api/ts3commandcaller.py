@@ -3,18 +3,6 @@ from urllib.parse import urlparse
 from ts3audiobot_api.commands import Playlist, History, User
 
 
-def is_url(link):
-    """
-    Check if link is valid
-    """
-    try:
-        result = urlparse(link)
-        if all([result.scheme, result.netloc]):
-            return True
-    except ValueError:
-        return False
-
-
 def format_url(url):
     return urllib.parse.quote(url)
 
@@ -32,12 +20,9 @@ class CommandCaller:
         """
         PLAY REQUESTED URL
         """
-        # CHECK IF URL IS VALID
-        if not is_url(link):
-            return False
 
         # MAKE REQUEST
-        return self.ts3audiobot.request("play/{url}".format(url=format_url(link)))
+        return self.ts3audiobot.request("play/{url}".format(url=link))
 
     def pause(self):
         return self.ts3audiobot.request("pause")

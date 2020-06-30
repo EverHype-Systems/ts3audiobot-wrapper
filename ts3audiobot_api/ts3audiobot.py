@@ -33,16 +33,15 @@ class TS3AudioBot:
         self.commandExecutor = CommandCaller(self)
         self.bot_id = 0
 
-        self.base.raw = "http://{ip}:{port}/api/{endpoint}".format(ip=ip, port=port)
-        self.base.normal = "http://{ip}:{port}/api/bot/use/{bot_id}/{endpoint}".format(ip=ip, port=port)
+        self.base_raw = "http://{ip}:{port}/api/{endpoint}"
+        self.base = "http://{ip}:{port}/api/bot/use/{bot_id}/(/{endpoint}"
 
     def generate_header(self):
-        return "Basic {username}:{access_token}".format(username=generate_base64(self.username),
-                                                        access_token=generate_base64(self.access_token))
+        return "Basic {token}".format(token=generate_base64(self.api_token))
 
     def request(self, endpoint):
 
-        r = requests.get(self.base.normal.format(endpoint=endpoint), headers={
+        r = requests.get(self.base.format(ip=self.ip, port=self.port, bot_id=self.bot_id, endpoint=endpoint), headers={
             "Authorization": self.generate_header(),
         }, timeout=self.timeout)
 
@@ -50,7 +49,7 @@ class TS3AudioBot:
 
     def raw_request(self, endpoint):
 
-        r = requests.get(self.base.raw.format(endpoint=endpoint), headers={
+        r = requests.get(self.base_raw.format(ip=self.ip, port=self.port, endpoint=endpoint), headers={
             "Authorization": self.generate_header(),
         }, timeout=self.timeout)
 
@@ -72,5 +71,5 @@ class TS3AudioBot:
         self.ip = ip
 
     def get_current_id(self):
-        return self.bot_ids
+        return self.bot_id
 
