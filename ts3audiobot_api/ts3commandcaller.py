@@ -4,11 +4,10 @@ from ts3audiobot_api.commands import Playlist, History, User
 
 
 def format_url(url):
-    return urllib.parse.quote(url, safe='')
+    return urllib.parse.quote(str(url), safe='')
 
 
 class CommandCaller:
-
     def __init__(self, ts3audiobot):
         """
         Init
