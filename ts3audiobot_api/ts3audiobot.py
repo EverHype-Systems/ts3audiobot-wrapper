@@ -45,7 +45,10 @@ class TS3AudioBot:
             "Authorization": self.generate_header(),
         }, timeout=self.timeout)
 
-        return r.json()
+        try:
+            return r.json()
+        except ValueError:
+            return True
 
     def raw_request(self, endpoint):
 
