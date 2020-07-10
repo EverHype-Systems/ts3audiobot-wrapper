@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="ts3audiobot-api",
-    version="0.0.3",
+    version="0.0.3.8",
     author="EverHype Systems",
     author_email="abajrami@everhype-systems.eu",
     description="API Wrapper for TS3AudioBot",
